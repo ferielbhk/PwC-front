@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+ 
+ 
+:root {
+    --primary-color-hue: 252;
+    --dark-color-lightness: 17%;
+    --light-color-lightness: 95%;
+    --white-color-lightness: 100%;
+ 
+    --color-white: hsl(252, 30%, var(--white-color-lightness));
+    --color-light: hsl(252, 30%, var(--light-color-lightness));
+    --color-grey: hsl(252, 15%, 65%);
+    --color-primary: hsl(var(--primary-color-hue), 75%, 60%);
+    --color-secondary: hsl(252, 100%, 90%);
+    --color-success: hsl(120, 95%, 65%);
+    --color-danger: hsl(0, 95%, 65%);
+    --color-dark: hsl(252, 30%, var(--dark-color-lightness));
+    --color-black: hsl(252, 30%, 10%);
+ 
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding: 1rem;
+ 
+    --sticky-top-left: 5.4rem;
+    --sticky-top-right: -18rem;
+ 
+}
+ 
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+}
+.icon {
+    font-size: 30px;  /* Agrandir la taille des icônes */
+    color: #000;  /* Changer la couleur en noir */
+    margin: 10px;
+} 
+nav {
+    width: 100%;
+    background: var(--color-white);
+    padding: 0.7rem 0;
+    position: fixed;
+   
+    top: 0;
+    z-index:10000000; /* Assurez-vous que la barre de navigation est au-dessus du reste du contenu */
+}
+.navbar-brand img {
+    max-width: 200px;
+    max-height: 200px;
+    top: 0;
+ 
+}
+.search-bar {
+    background: var(--color-light);
+    border-radius: var(--border-radius);
+}
+ 
+.search-bar input[type="search"] {
+    background: transparent;
+        color: var(--color-dark);
+ 
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-dark);
+    background: var(--color-light);
+    overflow-x: hidden;
+}
+
+/* =============== General Style ============== */
+.container {
+    max-width: 850px;
+    width: 80%;
+    margin: 0 auto;
+}

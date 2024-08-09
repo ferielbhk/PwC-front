@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <!-- Stylesheet -->
+     
+   
+</head>
+<style>
+    .body-content{
+        margin-top: 6rem;
+    }
+    .button-spacing {
+        margin: 5px; 
+    }
+    
+</style>
+
+
+<nav class="navbar px-5 nav bg-white fixed-top ">
+    <div class="container-fluid ">
+      <div>
+        <a class="navbar-brand d-flex align-items-center" routerLink="/feed">
+          <img src="../assets/pwc-connect-removebg-preview.png" class="img-fluid logo" alt="">
+        </a>
+      </div>
+      <div class="container search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="filterUsers()" aria-label="Search">
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center">
+          <a href="/feed" class="menu-item active">
+            <span><i class="uil uil-home icon"></i></span>
+        </a>
+        <div class="menu-item active" (click)="signOff()">
+            <span><i class="uil uil-sign-out-alt icon"></i></span>
+          </div>
+          
+
+          <!--img [src]="'data:image/png;base64,'+user?.image" class="rounded-circle mx-2" style="width: 70px; height: 70px;">
+          <h5><span class="font-weight-bold d-lg-inline">{{user?.firstname}} {{user?.lastname}}</span></h5--> 
+        </div>
+      </div>
+    </div>
+  </nav>
+<body>
+  <div class="body-content background-color:grey px-5 mx-5">
+      <!-- Conteneur pour tous les utilisateurs -->
+        <br> <br>
+                  <div *ngIf="!isSearching" class="row d-flex justify-content-center">
+                      <div class="col-3 mb-4 m-3" *ngFor="let user of users" >
+                          <div class="card user-card-full">
+                              <div class="row m-l-0 m-r-0" style="min-height: 300px;   max-height: 300px;">
+                                  <div class="col-sm-4 bg-c-lite-green user-profile" style="min-height: 300px;   max-height: 300px;">
+                                      <div class="card-block text-center text-white" style="min-height: 300px;   max-height: 300px;" >
+                                          <div class="m-b-25">
+                                              <img [src]="'data:image/png;base64,'+user.image" class="img-radius rounded-circle px-3 mx-2 mb-2" alt="User-Profile-Image">
+                                          </div>
+                                          <p>{{ user.firstname }} {{ user.lastname }}</p>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-8">
+                                      <div class="card-block" style="min-height: 300px;   max-height: 300px;">
+                                          <div class="row">
+                                              <div class="col-sm-6">
+                                                  <p class="m-b-10 f-w-600">Email</p>
+                                                  <h6 class="text-muted f-w-400">{{ user.email }}</h6>
+                                              </div>
+                                              <div class="col-sm-6">
+                                                  <p class="m-b-10 f-w-600">Phone</p>
+                                                  <h6 class="text-muted f-w-400">{{ user.tel }}</h6>
+                                              </div>
+                                          </div>
+                                          <hr>
+                                          <p class="m-b-4 mt-3 f-w-600">Informations</p>
+                                          <h6 class="text-muted f-w-400">{{ user.informations }}</h6>
+                                          <div class="d-flex">
+                                        <button class="button-62 button-spacing" (click)="handleButtonClick(user)">Contacter</button>
+                                            <button class="button-62 button-spacing" (click)="viewProfil(user.id)">View Profil</button>
+                                          
+                                        </div>
+
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+            
+      <!-- Conteneur pour les utilisateurs filtrés -->
+      <div class="container2 m-5" *ngIf="isSearching">
+        <div class="mx-6 px-6" id="page-content" style="padding-top: 20px;">
+            <div class="container">
+                <div class="row justify-content-start">
+                    <div class="col-12 col-md-6 mb-3 d-flex" *ngFor="let user of filteredUsers">
+                        <div class="card user-card-full w-100 " style="min-height: 270px;   max-height: 270px;
+">
+                            <div class="row no-gutters">
+                                <div class="col-sm-4 bg-c-lite-green user-profile" style="min-height: 270px;   max-height: 270px;">
+                                    <div class="card-block text-center text-white d-flex flex-column align-items-center" style="min-height: 270px;   max-height: 270px;">
+                                        <div class="m-b-25">
+                                            <img [src]="'data:image/png;base64,'+user.image" class="img-radius mb-2 rounded-circle" style="width: 100px; height: 100px;" alt="User-Profile-Image">
+                                  
+                                          </div>
+                                          <p>{{ user.firstname }} {{ user.lastname }}</p>
+
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-8">
+                                      <div class="card-block">
+                                          <div class="row">
+                                              <div class="col-sm-6">
+                                                  <p class="m-b-10 f-w-600">Email</p>
+                                                  <h6 class="text-muted f-w-400">{{ user.email }}</h6>
+                                              </div>
+                                              <div class="col-sm-6">
+                                                  <p class="m-b-10 f-w-600">Phone</p>
+                                                  <h6 class="text-muted f-w-400">{{ user.tel }}</h6>
+                                              </div>
+                                          </div>
+                                          <hr>
+                                          <p class="m-b-10 mt-3 f-w-600">Informations</p>
+                                          <h6 class="text-muted f-w-400">{{ user.informations }}</h6>
+                                          <div class="d-flex">
+                                          <button class="button-62 button-spacing" (click)="handleButtonClick(user)">Contacter</button>
+                                          <button class="button-62 button-spacing" (click)="viewProfil(user.id)">View Profil</button>
+                                        </div>
+                                      </div>                             
+
+                                    
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>

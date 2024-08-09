@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- IconScout CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+</head>
+<style>
+    .body-content {
+        margin-top: 6rem;
+    }
+</style>
+<body>
+    <nav class="navbar px-5 nav bg-white fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" routerLink="/feed">
+                <img src="../assets/pwc-connect-removebg-preview.png" class="img-fluid" alt="">
+            </a>
+            <div class="container">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerm" (input)="filterNotifications()">
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                  <a href="/feed" class="menu-item active">
+                    <span><i class="uil uil-home icon"></i></span>
+                </a>
+                <a href="/signin" class="menu-item active">
+                  <span><i class="uil uil-sign-out-alt icon"></i></span>
+              </a>
+                </div>
+                </div>
+        </div>
+    </nav>
+
+    <div class="body-content px-5 mx-5">
+        <main>
+            <div class="containeeerrr">
+                <section class="middle">
+                    <div class="feeds">
+                        <div 
+                            class="feed mb-3 py-2" 
+                            *ngFor="let notif of filteredNotifs"
+                            [ngClass]="{ 'read-notif': notif.read }"
+                            (click)="markAsReadNotif(notif)">
+                            <div class="post-card">
+                                <div class="head">
+                                    <div>
+                                        <p class="mb-0 text-muted" style="font-weight: bold;">{{ notif.message }}</p>
+                                        <p style="font-weight: bold;"><small>{{ notif.timestamp | date: 'MMM dd, yyyy à HH:mm' }}</small></p>
+                                        <div *ngIf="!notif.read"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                          <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                                        </svg></div>
+                                        <div *ngIf="notif.read"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                        </svg></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <div class="customize-theme">
+            <div class="card">
+                <h2>Customize your view</h2>
+                <p class="text-muted">Manage your font size, color, and background</p>
+                <div class="font-size">
+                    <h4>Font Size</h4>
+                    <div>
+                        <h6>Aa</h6>
+                        <div class="choose-size">
+                            <span class="font-size-1"></span>
+                            <span class="font-size-2 active"></span>
+                            <span class="font-size-3"></span>
+                            <span class="font-size-4"></span>
+                            <span class="font-size-5"></span>
+                        </div>
+                        <h3>Aa</h3>
+                    </div>
+                </div>
+                <!-- Primary Colors -->
+                <div class="color">
+                    <h4>Color</h4>
+                    <div class="choose-color">
+                        <span class="color-1 active"></span>
+                        <span class="color-2"></span>
+                        <span class="color-3"></span>
+                        <span class="color-4"></span>
+                        <span class="color-5"></span>
+                    </div>
+                </div>
+                <!-- Background Colors -->
+                <div class="background">
+                    <h4>Background</h4>
+                    <div class="choose-bg">
+                        <div class="bg-1 active">
+                            <span></span>
+                            <h5 for="bg-1">Light</h5>
+                        </div>
+                        <div class="bg-2">
+                            <span></span>
+                            <h5 for="bg-2">Dim</h5>
+                        </div>
+                        <div class="bg-3">
+                            <span></span>
+                            <h5 for="bg-3">Dark</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

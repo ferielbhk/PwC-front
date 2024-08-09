@@ -1,0 +1,34 @@
+<div class="stories rounded">
+
+
+  <div class="rounded story create">
+    <img [src]="'data:image/png;base64,' + user.image" alt="Profile" class="rounded" style="min-height: 141px; max-height: 141px; ">
+    <div style="display: flex; justify-content: space-between;">
+      <i (click)="fileInput.click()" class="fa fa-plus create-story-icon"></i>
+      <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+      <i class="fa fa-check check-icon" (click)="submit()"></i>
+    </div>
+    
+  </div>
+  
+    
+
+
+
+  <div class="story rounded" *ngFor="let story of stories">
+    <div *ngIf="story.user.id === userId" class="story-content rounded">
+      <img [src]="'data:image/png;base64,' + story.image" class="rounded" alt="Profile" style="min-height: 141px; max-height: 141px;">
+      <div class="dp-container">
+        <img [src]="'data:image/png;base64,' + user.image" alt="Profile" >
+      </div>
+      <p class="name">Your Story</p>
+    </div>
+    <div *ngIf="story.user.id !== userId" class="story-content rounded">
+      <img [src]="'data:image/png;base64,' + story.image" alt="Profile" style="min-height: 141px; max-height: 141px;">
+      <div class="dp-container">
+        <img [src]="'data:image/png;base64,' + story.user.image" alt="Profile">
+      </div>
+      <p class="name mb-2">{{ story.user.firstname }} {{ story.user.lastname }}</p>
+    </div>
+  </div>
+</div>

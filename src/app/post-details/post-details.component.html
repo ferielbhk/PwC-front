@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- IconScout CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <!-- Stylesheet -->
+    <style>
+        .body-content {
+            margin-top: 6rem;
+            padding: 0 1.25rem; 
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar px-5 nav bg-white fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center">
+                <img src="../assets/pwc-connect-removebg-preview.png" class="img-fluid" alt="">
+            </a>
+
+           
+            <div>
+                <button type="button" class="btn btn-danger" (click)="signOff()"><i class="fa fa-solid fa-power-off"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="body-content">
+        <main>
+            <div class="container">
+              
+                <section class="middle mb-4">
+                    <div class="feeds">
+                        <div class="feed mb-3 py-2">
+                            <div class="post-card">
+                                <div class="head">
+                                    <div class="user">
+                                        <div class="profile-photo mt-1">
+                                            <img [src]="'data:image/png;base64,'+post.user.image" class="rounded-circle mx-2" alt="Profile" style="width: 40px; height: 40px;">
+                                        </div>
+                                        <h6 class="mt-3">{{ post?.user?.firstname }} {{ post?.user?.lastname }}</h6>
+                                        <div class="info"></div>
+                                    </div>
+                                    <span class="edit">
+                                        <i class="uil uil-ellipsis-h"></i>
+                                    </span>
+                                </div>
+                                <div class="content">
+                                    <p>{{ post?.content }}</p>
+                                    <img *ngIf="post?.image" [src]="'data:image/png;base64,' + post.image">
+                                </div>
+                                <div class="action-buttons">
+                                    <div class="interaction-buttons">
+                                        <span class="liked-by"></span>
+                                        <span>
+                                            <fa-icon (click)="toggleLike(post)"
+                                                [icon]="post.isLiked ? faHeartSolid : faHeartOutline"
+                                                class="heart-icon"
+                                                [ngClass]="{ liked: post.isLiked }"></fa-icon>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="liked-by">
+                                    {{ post.likes }} Likes ~ {{ post.commentaires }} Comments
+                                </div>
+                                <div class="form-group mt-2">
+                                    <input [(ngModel)]="comment" placeholder="COMMENT THIS POST ?" class="form-control" required>
+                                    <button (click)="createComment(post.id)" class="btn btn-primary mt-3 mb-3">Comment</button>
+                                </div>
+                                <div class="comment">
+                                    <div class="commentairee my-2 rounded" *ngFor="let commentt of post.comments">
+                                        <div class="d-flex align-items-center py-1">
+                                            <img [src]="'data:image/png;base64,'+commentt.user.image" class="rounded-circle mx-2" style="width: 40px; height: 40px;">
+                                            <h6 class="my-1" style="color: rgb(255, 94, 0)">{{ commentt.user.firstname }} {{ commentt.user.lastname }}</h6>
+                                        </div>
+                                        <div class="mx-2" style="color: rgb(6, 6, 7)">
+                                            <p>{{ commentt.content }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- END OF MIDDLE SECTION -->
+            </div>
+        </main>
+    </div>
+</body>
+</html>
